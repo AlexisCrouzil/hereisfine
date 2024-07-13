@@ -1,0 +1,6 @@
+Pour gérer des calendriers avec des contraintes spécifiques, tu pourrais envisager d’autres types d’algorithmes ou méthodes, comme :
+
+- Programmation linéaire : Utilisée pour optimiser un objectif donné sous des contraintes linéaires. C’est une méthode puissante pour des problèmes de planification et d’ordonnancement.
+- Algorithmes génétiques : Inspirés par la sélection naturelle, ces algorithmes peuvent être utilisés pour trouver des solutions optimales dans des espaces de recherche complexes.
+- Algorithmes de recherche locale : Comme le recuit simulé ou la recherche tabou, qui sont efficaces pour trouver des solutions optimales ou quasi-optimales dans des problèmes de grande taille. -> cet algo me semble le mieux convenir
+- Heuristiques et métaheuristiques : Des approches comme les algorithmes de colonies de fourmis ou les algorithmes de particules peuvent être adaptées pour résoudre des problèmes de planification avec des contraintes multiples.
