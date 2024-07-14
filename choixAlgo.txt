@@ -1,0 +1,40 @@
+Description du contexte de la problématique:
+
+Objectif: optimiser le planing des match pour un club de hockey: 
+- résoudre les conflits initaux avant le lancement de la saison
+- trouver les meilleur comprimis pour les changements en cours de saison
+
+Workflow et analyse:
+Le club reçoit tout d'abord des calendrier pour les matchs de chacune des catégories engagées dans les divers championnats. Chaque date est rentrée dans un planning global sous forme de spreadsheet et répartie entre les deux patinoires du club (Jany et Blagnac).
+Les catégories sont organisées par la fédé en ordre de priorité.
+Chaque conflit de date est revu avec le club correspondant en proposant des dates alternatives pour trouver le meilleur compromis.
+Une date est arrêtée avec la fédé en début de saison pour officialiser les calendriers des rencontres pour chaque catégories, permettant le début officiel de la saison.
+Au cours de la saison, un changement de planing peut être nécessaire et il s'agit alors de trouvers la meilleure date de substitution.
+
+Contraintes:
+- les catégories sont organisées en ordre de priorité
+- lors de déplacement, les regroupements sont favorables
+- la patinoire de Blagnac est à privilégier pour les matchs du samedi soir
+- ... (autres contraintes à capturer de Thibault)
+
+Solution proposée:
+Utilisation d'un algorithme de recherche locale:
+A partir du calendrier rempli par ordre de catégorie prioritaire, utiliser l'algo en cas de conflit.
+L'utilisateur passer à l'algorithme les informations du match à déplacer.
+L'algorithme va étudier chaque créneau de match (libre ou pas) dans le futur et va pondérer l'option en fonction des contraintes, pour ne retenir que les options qui donnnent un meilleur score que la dernière option évaluée.
+L'algorithme propose enfin les options retenues avec leurs évaluations.
+L'utilisateur décide de l'option retenue et traite avec le club adverse conserné, puis modifie le planning en conséquent.
+L'algorithme est à utiliser pour chaque match à déplacer.
+
+Possibilité d'extension de la solution:
+- Prise en compte de créneaux de match antérieurs à la date initiale de la rencontre.
+- Proposition en cascade des matchs à déplacer pour la meilleure option retenue.
+
+BACKUP
+
+Autres algorithmes envisagés:
+
+- Programmation linéaire : Utilisée pour optimiser un objectif donné sous des contraintes linéaires. -> La problématique n'est pas liée à l'optimisation de valeurs continues.
+- Algorithmes génétiques : Inspirés par la sélection naturelle, ces algorithmes peuvent être utilisés pour trouver des solutions optimales dans des espaces de recherche complexes. -> L'objectif n'est pas de mettre en place un planning initial, vu que celui-ci est fourni pour les différentes catégories en début de saison.
+- Algorithmes de recherche locale : Comme le recuit simulé ou la recherche tabou, qui sont efficaces pour trouver des solutions optimales ou quasi-optimales dans des problèmes de grande taille. -> Cet algo me semble le mieux convenir pour faire des propositions d'optimisation en fonction de contraintes.
+- Heuristiques et métaheuristiques : Des approches comme les algorithmes de colonies de fourmis ou les algorithmes de particules. -> Même remarque que pour les algorithmes génétiques.
