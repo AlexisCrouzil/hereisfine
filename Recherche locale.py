@@ -1,6 +1,7 @@
 #Exemple en Python
 import random
 
+#Nouveau commentaire littleChange
 # Définir une solution initiale
 def initial_solution(teams, terrains, jours):
     solution = {}
