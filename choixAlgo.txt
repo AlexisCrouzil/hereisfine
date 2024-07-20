@@ -9,7 +9,7 @@ Le club reçoit tout d'abord des calendrier pour les matchs de chacune des caté
 Les catégories sont organisées par la fédé en ordre de priorité.
 Chaque conflit de date est revu avec le club correspondant en proposant des dates alternatives pour trouver le meilleur compromis.
 Une date est arrêtée avec la fédé en début de saison pour officialiser les calendriers des rencontres pour chaque catégories, permettant le début officiel de la saison.
-Au cours de la saison, un changement de planing peut être nécessaire et il s'agit alors de trouvers la meilleure date de substitution.
+Au cours de la saison, un changement de planing peut être nécessaire et il s'agit alors de trouver la meilleure date de substitution.
 
 Contraintes:
 - les catégories sont organisées en ordre de priorité
@@ -20,10 +20,10 @@ Contraintes:
 Solution proposée:
 Utilisation d'un algorithme de recherche locale:
 A partir du calendrier rempli par ordre de catégorie prioritaire, utiliser l'algo en cas de conflit.
-L'utilisateur passer à l'algorithme les informations du match à déplacer.
+L'utilisateur passe à l'algorithme les informations du match à déplacer.
 L'algorithme va étudier chaque créneau de match (libre ou pas) dans le futur et va pondérer l'option en fonction des contraintes, pour ne retenir que les options qui donnnent un meilleur score que la dernière option évaluée.
 L'algorithme propose enfin les options retenues avec leurs évaluations.
-L'utilisateur décide de l'option retenue et traite avec le club adverse conserné, puis modifie le planning en conséquent.
+L'utilisateur décide de l'option retenue et traite avec le club adverse concerné, puis modifie le planning en conséquent.
 L'algorithme est à utiliser pour chaque match à déplacer.
 
 Possibilité d'extension de la solution:
