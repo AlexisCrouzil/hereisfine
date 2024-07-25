@@ -12,23 +12,20 @@ Une date est arrêtée avec la fédé en début de saison pour officialiser les 
 Au cours de la saison, un changement de planing peut être nécessaire et il s'agit alors de trouver la meilleure date de substitution.
 
 Contraintes:
-- les catégories sont organisées en ordre de priorité
-- lors de déplacement, les regroupements sont favorables
-- la patinoire de Blagnac est à privilégier pour les matchs du samedi soir
-- ... (autres contraintes à capturer de Thibault)
+Les contraintes et consignes figurent dans l'onglet 'Params' du calendrier et son traduites par un système de malus dans les feuilles 'Categories', 'Patinoires' et 'Jours'. Les valeurs de malus pour une contrainte vont de 0 (meilleur score) à 10.
 
 Solution proposée:
 Utilisation d'un algorithme de recherche locale:
 A partir du calendrier rempli par ordre de catégorie prioritaire, utiliser l'algo en cas de conflit.
-L'utilisateur passe à l'algorithme les informations du match à déplacer.
-L'algorithme va étudier chaque créneau de match (libre ou pas) dans le futur et va pondérer l'option en fonction des contraintes, pour ne retenir que les options qui donnnent un meilleur score que la dernière option évaluée.
-L'algorithme propose enfin les options retenues avec leurs évaluations.
-L'utilisateur décide de l'option retenue et traite avec le club adverse concerné, puis modifie le planning en conséquent.
+L'utilisateur va dans le menu 'Scripts\Game Scheduler' et passe à l'algorithme l'ID du match à déplacer via le prompt.
+L'algorithme va étudier chaque créneau de match (libre ou pas) présent dans le calendrier et va les pondérer, en aggrégant les malus en fonction des diverses contraintes.
+L'algorithme propose enfin la liste des créneaux, avec leurs évaluations, dans un nouvel onglet du calendrier.
+L'utilisateur peut naviger dans la liste (tri, filtre...) et décider de l'option, puis traite avec le club adverse concerné et modifie le planning en conséquent.
 L'algorithme est à utiliser pour chaque match à déplacer.
 
 Possibilité d'extension de la solution:
-- Prise en compte de créneaux de match antérieurs à la date initiale de la rencontre.
-- Proposition en cascade des matchs à déplacer pour la meilleure option retenue.
+- Rajout de contraintes
+- ...
 
 BACKUP
 

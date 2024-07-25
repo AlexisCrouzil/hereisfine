@@ -9,3 +9,6 @@ Modifications à apporter au fichier de calendrier:
 - rajouter les feuilles 'Categories', 'Patinoires' et 'Jours'
 - rajouter une id pour les créneaux 
 - revoir le nom des catégories pour enlenver les espaces et les caractères spéciaux
+
+Si l'heure du slot est définie (slot valide), alors je calcul les malus pour le slot:
+- malus de la catégorie

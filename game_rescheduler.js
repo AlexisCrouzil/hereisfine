@@ -1,6 +1,5 @@
-// @ts-nocheck
 //Fonction initiale pour établir les variables et lancer les fonctions
-function proposerNouvelleDate(gameID) {
+function proposerNouvelleDate() {
   //capture du spreadsheet du calendrier
   var sheet = SpreadsheetApp.getActiveSpreadsheet();
   //capture de la feuille du calendrier
@@ -9,9 +8,15 @@ function proposerNouvelleDate(gameID) {
   var calendarData = calendarSheet.getDataRange().getValues();
   
   //capture du match à déplacer
-  var gameID = 'D2_C01';
+  //var gameID = 'D2_C01';
   //id slot de destination de test
-  var slotID = '40BLSA19'
+  //var slotID = '40BLSA19'
+
+  var gameID = Browser.inputBox('Saisisser l\'ID du match à déplacer:');
+  if (gameID == 'cancel') {
+    Browser.msgBox('Action annulée.');
+    return;
+  }
 
   //capture des match plannifiés
   var games = parseMatchData(calendarData, gameID);
@@ -47,6 +52,18 @@ function proposerNouvelleDate(gameID) {
   var meilleursVoisins = gameScheduler(games, slots, prioParCat, prioParPat, prioParDay, gameID);
 
   Logger.log(meilleursVoisins);
+
+  writeResultsToSheet(meilleursVoisins);
+}
+
+function writeResultsToSheet(tableau) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('meilleursVoisins');
+  sheet.clear();
+  sheet.appendRow(['ID slot', 'malus', 'categorie', 'date', 'heure', 'lieu']);
+  for (var id in tableau) {
+    var row = [id, tableau[id].malus, tableau[id].categorie, tableau[id].date, tableau[id].heure, tableau[id].lieu];
+    sheet.appendRow(row);
+  }
 }
 
 function parsePrioParDayData(dayData) {
@@ -135,9 +152,38 @@ function parseSlotData(calendrier) {
 
 function gameScheduler(games, slots, prioParCat, prioParPat, prioParDay, gameID) {
   var meilleursVoisins = {};
-  for (var i = 0; i < slots.length; i++) {
-  meilleursVoisins = prioParCat[games[gameID].categorie].Trophee_Federal/*+prioParCat[games[gameID].categorie].Trophee_Federal*/;
+  var gameCategorie = games[gameID].categorie;
+  for (var i in slots) {
+    if (slots[i].heure != null) {
+      var slotCat = slots[i].categorie; //Faut-il rajouter que ça ne doit pas être de la même catégorie?
+      var slotPat = slots[i].lieu;
+      var slotDay = slots[i].date;
+      slotDay = slotDay.getDay();
+      var malusCat = prioParCat[gameCategorie][slotCat];
+      var malusPat = prioParPat[gameCategorie][slotPat];
+      var malusDay = prioParDay[gameCategorie][slotDay];
+      var voisin = {
+        id: slots[i].id,
+        malus: 
+          ((malusCat !== undefined) ? malusCat : 0) +
+          ((malusPat !== undefined) ? malusPat : 0) +
+          ((malusDay !== undefined) ? malusDay : 0),
+        categorie: slots[i].categorie,
+        date: slots[i].date,
+        heure: slots[i].heure,
+        lieu: slots[i].lieu
+      }
+      meilleursVoisins[slots[i].id] = voisin;
+      //((malusCat !== undefined) ? malusCat : 0) + 
+      //((malusPat !== undefined) ? malusPat : 0) + 
+      //((malusDay !== undefined) ? malusDay : 0); /*prioParCat[games[gameID].categorie].slot[i] Trophee_Federal+prioParCat[games[gameID].categorie].Trophee_Federal*/;      
+    }
   }
   
   return meilleursVoisins
+}
+
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('Scripts').addItem('Game Scheduler','proposerNouvelleDate').addToUi();
 }
