@@ -1,4 +1,11 @@
 Une fenêtre s'ouvre en demandant l'id du match à déplacer, avec un bouton 'proposer des dates alternatives'
+
+Récupération des match plannifiés dans un dico 'games'
+
 Solution initiale: Une fonction permet de trouver le match et les détails dans la spreadsheet.
 Recherche des voisins: chaque ligne suivante est ensuite évaluée par une fonction, la solution est retenue si le score (la pénalité) obtenue est inférieure
 
+Modifications à apporter au fichier de calendrier:
+- rajouter les feuilles 'Categories', 'Patinoires' et 'Jours'
+- rajouter une id pour les créneaux 
+- revoir le nom des catégories pour enlenver les espaces et les caractères spéciaux
